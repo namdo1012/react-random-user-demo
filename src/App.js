@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./index.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userPhoto: ""
+    };
+  }
+
+  getUser = () => {
+    fetch("https://randomuser.me/api/?results=1")
+      .then((results) => {
+        return results.json();
+      })
+      .then((data) => {
+        const userPic = data.results[0].picture.thumbnail;
+        this.setState({ userPhoto: userPic });
+      });
+  };
+
+  componentDidMount() {
+    this.getUser();
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <img alt="userPic" src={this.state.userPhoto} />
+        </div>
+        <button onClick={this.getUser}>Change user</button>
+      </div>
+    );
+  }
 }
 
 export default App;
