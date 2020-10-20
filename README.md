@@ -1,3 +1,5 @@
+Project overview demo: [react-random-user](https://codesandbox.io/s/dry-bird-n4ku2?file=/src/index.css).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
